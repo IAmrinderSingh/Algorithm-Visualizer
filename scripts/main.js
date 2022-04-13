@@ -1,12 +1,15 @@
 import {swap,bubbleSort} from "./bubbleSort.js"
-import { randomList } from "./randomlist.js";
-
+import { generateArray ,list,max_value_arr,length_arr} from "./generateArray.js";
 const bubble=document.querySelector("#bubble");
-const length_arr=document.querySelector("#length_arr");
-const max_value_arr=document.querySelector("#max_value");
+const newarray=document.querySelector("#newarray");
+const algorithm=document.querySelector("#algorithm");
 
+generateArray();
+
+newarray.addEventListener("click",()=>{
+    generateArray();
+})
 
 bubble.addEventListener("click",()=>{
-    const list=randomList(parseInt(length_arr.value),parseInt(max_value_arr.value));
-    console.log(list)
+    bubbleSort(list,length_arr);
 })
