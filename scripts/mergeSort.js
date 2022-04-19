@@ -3,7 +3,7 @@
 function merge(arr,beg,mid,end){
     var n1 = mid - beg + 1;
     var n2 = end - mid;
-  
+
     // Create temp arrays
     var L = new Array(n1); 
     var R = new Array(n2);
@@ -13,7 +13,6 @@ function merge(arr,beg,mid,end){
         L[i] = arr[beg + i];
     for (var j = 0; j < n2; j++)
         R[j] = arr[mid + 1 + j];
-  
     // Merge the temp arrays back into arr[l..r]
   
     // Initial index of first subarray
@@ -52,14 +51,15 @@ function merge(arr,beg,mid,end){
         k++;
     }
 }
+
 function mergeSort(arr,beg,end){
     if(beg>=end){
-        return;
+        return; //returns recursively
     }
-    let mid=(beg+end)/2;
+    let mid=beg+parseInt((end-beg)/2);
     mergeSort(arr,beg,mid);
     mergeSort(arr,mid+1,end);
-    mergeSort(arr,beg,mid,end);
+    merge(arr,beg,mid,end);
 }
 
 export{mergeSort};
