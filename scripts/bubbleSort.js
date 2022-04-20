@@ -1,37 +1,43 @@
 'use strict'
-const speed=500;
-const list_style=document.querySelector(".list-style");
-function swap(arr, xp, yp)
+const time=document.querySelector("#time");
+const bars=document.getElementsByClassName("list-style");
+
+// swaping height of bars
+function swap(ele1,ele2)
 {
-	var temp = arr[xp];
-	arr[xp] = arr[yp];
-	arr[yp] = temp;
+	let temp=ele1.style.height;
+	ele1.style.height=ele2.style.height;
+	ele2.style.height=temp;
 }
 
-function task(i,j,arr){
-	setTimeout(()=>{
-		if (arr[j] > arr[j+1])
-		{
-		const ele1=document.querySelector(`#A${j}`);
-		const ele2=document.querySelector(`#A${j+1}`);
-		ele1.setAttribute("style",`height:${arr[j+1]}px`);
-		ele2.setAttribute("style",`height:${arr[j]}px`);
-		swap(arr,j,j+1);
-		}
-	},speed*i)
+function delay(mili){
+	return new Promise(resolve=>{
+		setTimeout(()=>{resolve('')},mili);
+	})
 }
 
 // An optimized version of Bubble Sort
-function bubbleSort( arr, n)
+async function bubbleSort()
 {
-var i, j;
-for (i = 0; i < n-1; i++)
-{	
-	for (j = 0; j < n-i-1; j++)
+	var i, j;
+	for (i = 0; i < bars.length; i++)
 	{	
-		task(i,j,arr);
+		for (j = 0; j < bars.length-i-1; j++)
+		{	
+			if (parseInt(bars[j].style.height)> parseInt(bars[j+1].style.height))
+			{	
+				bars[j].style.backgroundColor="blue";
+				bars[j+1].style.backgroundColor="blue";
+				await delay(parseInt(time.value));
+				swap(bars[j],bars[j+1]);
+			}
+			bars[j].style.backgroundColor="darkmagenta";
+			bars[j+1].style.backgroundColor="darkmagenta";
+		}
+		bars[bars.length-1-i].style.backgroundColor="green";
 	}
-}
+	bars[0].style.backgroundColor="green";	
+
 }
 
-export{swap,bubbleSort};
+export{bubbleSort,bars};
