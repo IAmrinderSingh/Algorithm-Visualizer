@@ -5,6 +5,7 @@ const max_value_arr=780;
 const array=document.querySelector("#array");
 let list=randomList(length_arr,max_value_arr);
 
+// for displaying array
 function displayArray(){
     array.innerHTML=""
     list.forEach((ele,index) => {
@@ -16,6 +17,7 @@ function displayArray(){
     });    
 }
 
+// generating random array
 function generateArray(){
     array.innerHTML="";
     list=randomList(length_arr,max_value_arr);
