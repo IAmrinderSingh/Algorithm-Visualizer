@@ -47,19 +47,7 @@ nav ul > button:hover{
 }
 
 .list-style{
-    background-color: blue;
+    background-color:blue;
     padding: 7px;
     margin-left: 5px;    
-}
-
-.yellow{
-    background-color: yellow;
-}
-
-.red{
-    background-color: red;
-}
-
-.green{
-    background-color: green;
 }
