@@ -1,6 +1,8 @@
 'use strict'
 
-function merge(arr,beg,mid,end){
+import{bars,delay,time} from "./bubbleSort.js"
+
+async function merge(arr,beg,mid,end){
     var n1 = mid - beg + 1;
     var n2 = end - mid;
 
@@ -26,10 +28,14 @@ function merge(arr,beg,mid,end){
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
             arr[k] = L[i];
+            bars[k].style.height=`${L[i]}px`;
+            await delay(parseInt(time.value));
             i++;
         }
         else {
             arr[k] = R[j];
+            bars[k].style.height=`${R[j]}px`;
+            await delay(parseInt(time.value));
             j++;
         }
         k++;
@@ -39,6 +45,8 @@ function merge(arr,beg,mid,end){
     // L[], if there are any
     while (i < n1) {
         arr[k] = L[i];
+        bars[k].style.height=`${L[i]}px`;
+        await delay(parseInt(time.value));
         i++;
         k++;
     }
@@ -47,19 +55,21 @@ function merge(arr,beg,mid,end){
     // R[], if there are any
     while (j < n2) {
         arr[k] = R[j];
+        bars[k].style.height=`${R[j]}px`;
+        await delay(parseInt(time.value));
         j++;
         k++;
     }
 }
 
-function mergeSort(arr,beg,end){
+async function mergeSort(arr,beg,end){
     if(beg>=end){
         return; //returns recursively
     }
     let mid=beg+parseInt((end-beg)/2);
-    mergeSort(arr,beg,mid);
-    mergeSort(arr,mid+1,end);
-    merge(arr,beg,mid,end);
+    await mergeSort(arr,beg,mid);
+    await mergeSort(arr,mid+1,end);
+    await merge(arr,beg,mid,end);
 }
 
 export{mergeSort};
