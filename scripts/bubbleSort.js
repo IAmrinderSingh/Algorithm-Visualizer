@@ -34,10 +34,10 @@ async function bubbleSort()
 			bars[j].style.backgroundColor="darkmagenta";
 			bars[j+1].style.backgroundColor="darkmagenta";
 		}
-		bars[bars.length-1-i].style.backgroundColor="green";
+		bars[bars.length-1-i].style.backgroundColor="#32a852";
 	}
-	bars[0].style.backgroundColor="green";	
+	bars[0].style.backgroundColor="#32a852";	
 
 }
 
-export{bubbleSort,bars};
+export{bubbleSort,bars,delay,time};
