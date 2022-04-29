@@ -1,5 +1,5 @@
 import {bubbleSort} from "./bubbleSort.js"
-import { generateArray ,list,length_arr, displayArray} from "./generateArray.js";
+import { generateArray ,list,length_arr} from "./generateArray.js";
 import { mergeSort } from "./mergeSort.js";
 import { quickSort } from "./quickSort.js";
 import {disableButtons,enableButtons,bubble,merge,genrate_new_array,quick } from "./disable_enable_buttons.js";
@@ -24,6 +24,6 @@ merge.addEventListener("click",async function(){
 
 quick.addEventListener("click",async function(){
     disableButtons();
-    await quickSort();
+    await quickSort(list,0,length_arr-1);
     enableButtons();
 })

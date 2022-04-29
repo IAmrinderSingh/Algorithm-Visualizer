@@ -1,6 +1,6 @@
 'use strict'
 
-import{bars,delay,time} from "./bubbleSort.js"
+import{bars,delay,time,green} from "./bubbleSort.js"
 
 async function merge(arr,beg,mid,end){
     var n1 = mid - beg + 1;
@@ -27,14 +27,23 @@ async function merge(arr,beg,mid,end){
   
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
+            bars[i].style.backgroundColor='blue';
+            bars[j].style.backgroundColor='blue';
+            await delay(parseInt(time.value));
             arr[k] = L[i];
             bars[k].style.height=`${L[i]}px`;
+            bars[k].style.backgroundColor='darkmagenta';
+            bars[i].style.backgroundColor='darkmagenta';
+            bars[j].style.backgroundColor='darkmagenta';
             await delay(parseInt(time.value));
             i++;
         }
         else {
+            bars[k].style.backgroundColor="blue";
+            await delay(parseInt(time.value));
             arr[k] = R[j];
             bars[k].style.height=`${R[j]}px`;
+            bars[k].style.backgroundColor='darkmagenta';
             await delay(parseInt(time.value));
             j++;
         }
@@ -44,8 +53,11 @@ async function merge(arr,beg,mid,end){
     // Copy the remaining elements of
     // L[], if there are any
     while (i < n1) {
+        bars[k].style.backgroundColor='blue';
+        await delay(parseInt(time.value));
         arr[k] = L[i];
         bars[k].style.height=`${L[i]}px`;
+        bars[k].style.backgroundColor='darkmagenta';
         await delay(parseInt(time.value));
         i++;
         k++;
@@ -54,8 +66,11 @@ async function merge(arr,beg,mid,end){
     // Copy the remaining elements of
     // R[], if there are any
     while (j < n2) {
+        bars[k].style.backgroundColor='blue';
+        await delay(parseInt(time.value));
         arr[k] = R[j];
         bars[k].style.height=`${R[j]}px`;
+        bars[k].style.backgroundColor='darkmagenta';
         await delay(parseInt(time.value));
         j++;
         k++;
@@ -70,6 +85,10 @@ async function mergeSort(arr,beg,end){
     await mergeSort(arr,beg,mid);
     await mergeSort(arr,mid+1,end);
     await merge(arr,beg,mid,end);
+    await delay(parseInt(time.value));
+    for(let i=beg;i<=end;i++){
+        bars[i].style.backgroundColor=green;
+    }
 }
 
 export{mergeSort};

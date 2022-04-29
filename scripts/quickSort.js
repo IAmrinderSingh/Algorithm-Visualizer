@@ -1,13 +1,18 @@
 'use strict'
 
-import { bars } from "./bubbleSort.js"
+import { bars, delay, time,green } from "./bubbleSort.js"
 
 // Javascript implementation of QuickSort
 
 
 // A utility function to swap two elements
 function swap(arr, i, j) {
+	bars[i].style.backgroundColor="darkmagenta";
+	bars[j].style.backgroundColor="darkmagenta";
 	let temp = arr[i];
+	let tempbar_height=bars[i].style.height;
+	bars[i].style.height=bars[j].style.height;
+	bars[j].style.height=tempbar_height;
 	arr[i] = arr[j];
 	arr[j] = temp;
 }
@@ -32,14 +37,19 @@ async function partition(arr, low, high) {
 		// If current element is smaller
 		// than the pivot
 		if (arr[j] < pivot) {
-
+			bars[j].style.backgroundColor="blue";
+			bars[high].style.backgroundColor="blue"
+			await delay(parseInt(time.value));
 			// Increment index of
 			// smaller element
 			i++;
 			swap(arr, i, j);
+			await delay(parseInt(time.value));
 		}
+		bars[j].style.backgroundColor="darkmagenta";
 	}
 	swap(arr, i + 1, high);
+	await delay(parseInt(time.value));
 	return (i + 1);
 }
 
@@ -57,8 +67,17 @@ async function quickSort(arr, low, high) {
 
 		// Separately sort elements before
 		// partition and after partition
-		quickSort(arr, low, pi - 1);
-		quickSort(arr, pi + 1, high);
+		await quickSort(arr, low, pi - 1);
+		await delay(parseInt(time.value));
+		for(let i=low;i<=pi-1;i++){
+			bars[i].style.backgroundColor=green;
+		}
+		await quickSort(arr, pi + 1, high);
+		await delay(parseInt(time.value));
+		for(let i=pi+1;i<=high;i++){
+			bars[i].style.backgroundColor=green;
+		}
+		bars[pi].style.backgroundColor=green;
 	}
 }
 
