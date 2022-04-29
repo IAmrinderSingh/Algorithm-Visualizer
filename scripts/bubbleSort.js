@@ -1,7 +1,7 @@
 'use strict'
 const time=document.querySelector("#time");
 const bars=document.getElementsByClassName("list-style");
-
+const green='#32a852';
 // swaping height of bars
 function swap(ele1,ele2)
 {
@@ -15,7 +15,6 @@ function delay(mili){
 		setTimeout(()=>{resolve('')},mili);
 	})
 }
-
 // An optimized version of Bubble Sort
 async function bubbleSort()
 {
@@ -34,10 +33,10 @@ async function bubbleSort()
 			bars[j].style.backgroundColor="darkmagenta";
 			bars[j+1].style.backgroundColor="darkmagenta";
 		}
-		bars[bars.length-1-i].style.backgroundColor="#32a852";
+		bars[bars.length-1-i].style.backgroundColor=green;
 	}
-	bars[0].style.backgroundColor="#32a852";	
+	bars[0].style.backgroundColor=green;	
 
 }
 
-export{bubbleSort,bars,delay,time};
+export{bubbleSort,bars,delay,time,green};
